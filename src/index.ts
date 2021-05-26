@@ -1,5 +1,7 @@
 export * from './file'
 export * from './image'
+export * from './register-event'
+export * from './window-fission'
 
 /**
  * 随机一个min到max之间的整数
