@@ -14,7 +14,7 @@ const createCanvas = (image: HTMLImageElement): HTMLCanvasElement => {
  * @param quality 质量 0~1之间的小数 默认1 小数点后两位有效
  * @returns
  */
-export const toBlob = (
+export const imageElementToBlob = (
   image: HTMLImageElement,
   mimeType: string,
   quality: number = 1
@@ -29,7 +29,7 @@ export const toBlob = (
  * @param quality 质量 0~1之间的小数 默认1 小数点后两位有效
  * @returns
  */
-export const toDataURL = (
+export const imageElementToDataURL = (
   image: HTMLImageElement,
   mimeType: string,
   quality: number = 1
