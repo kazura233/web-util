@@ -3,10 +3,11 @@
  * @param queryName
  */
 export const getQueryVariable = (queryName: string, search?: string): string => {
+  queryName = encodeURIComponent(queryName)
   search = search || location.search
-  search = search.substring(search.indexOf('?'))
+  search = search.substring(search.indexOf('?') + 1)
   if (typeof URLSearchParams === 'function') {
-    return decodeURIComponent(new URLSearchParams(search).get('id_token') || '')
+    return decodeURIComponent(new URLSearchParams(search).get(queryName) || '')
   }
   const reg = new RegExp('(^|&)' + queryName + '=([^&]*)(&|$)', 'i')
   const res = search.match(reg)
