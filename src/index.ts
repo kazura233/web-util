@@ -15,7 +15,7 @@ export const random = (min: number, max: number): number => {
 
 /**
  * 延缓执行
- * @param duration 暂停的毫秒数。
+ * @param duration 暂停的毫秒数
  * @returns
  */
 export const sleep = (duration: number = 1000): Promise<undefined> => {
@@ -32,4 +32,32 @@ export const appendScript = (url: string) => {
   const element = document.createElement('script')
   element.src = url
   document.body.appendChild(element)
+}
+
+/**
+ * 在光标处插入，自动补正光标的偏移量
+ * @param textarea
+ * @param text
+ */
+export const insertAtTextarea = (textarea: HTMLTextAreaElement, text: string) => {
+  const leftText = textarea.value.substring(0, textarea.selectionStart)
+  const rightText = textarea.value.substring(textarea.selectionEnd)
+  textarea.value = leftText + text + rightText
+  textarea.focus()
+  const v = leftText.length + text.length
+  textarea.setSelectionRange(v, v)
+}
+
+/**
+ * 执行一个函数，并把其结果通过promise包装的方式返回
+ * 如果fn不是一个函数，是一个promise会原样返回，否则会通过promise包装后返回
+ * @param fn
+ */
+export function runFn<T>(fn: Promise<T> | ((...args: any[]) => T)): Promise<T> {
+  let res = typeof fn === 'function' ? fn() : fn
+  if (res instanceof Promise) {
+    return res
+  } else {
+    return new Promise((_) => _(res))
+  }
 }
