@@ -50,7 +50,7 @@ export const base64ToBlob = (data: string, mime: string) => {
  */
 export const dataURLToBlob = (data: string) => {
   const [head, base64] = data.split(',')
-  const mime = head.match(/(?<=:).*?(?=;)/)![0]
+  const mime = head.match(/:(.*?);/)![1]
   return base64ToBlob(base64, mime)
 }
 
