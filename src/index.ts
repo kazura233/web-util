@@ -3,6 +3,7 @@ export * from './image'
 export * from './register-event'
 export * from './window-fission'
 export * from './get-query-variable'
+export * from './pattern'
 
 /**
  * 随机一个min到max之间的整数
@@ -61,4 +62,28 @@ export function runFn<T>(fn: Promise<T> | ((...args: any[]) => T)): Promise<T> {
   } else {
     return new Promise((_) => _(res))
   }
+}
+
+/**
+ * 复制到剪贴板
+ * @param text
+ * @returns
+ */
+export const copy = (text: string): boolean => {
+  const elm = document.createElement('textarea')
+  elm.value = text
+  document.body.appendChild(elm)
+  elm.select()
+
+  let sussess = false
+  try {
+    document.execCommand('copy')
+    sussess = true
+  } catch (error) {
+    console.error(error)
+  } finally {
+    document.body.removeChild(elm)
+  }
+
+  return sussess
 }
