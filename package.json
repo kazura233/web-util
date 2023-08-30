@@ -1,6 +1,6 @@
 {
   "name": "@kazura/web-util",
-  "version": "0.0.1-alpha.5",
+  "version": "0.0.2",
   "description": "web-util",
   "keywords": [
     "util"
@@ -55,6 +55,10 @@
     }
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
