@@ -22,8 +22,6 @@ export class MiddlewareCore<T> implements IMiddlewareCore<T> {
     this.index++
 
     while (this.index < this.handlers.length) {
-      console.log('准备执行', this.index + 1, '号中间件')
-
       const handler = this.handlers[this.index]
       if (handler) {
         handler(this)
